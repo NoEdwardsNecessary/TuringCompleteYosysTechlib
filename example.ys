@@ -1,0 +1,13 @@
+read_verilog -sv example.v
+hierarchy -check -top the_top_module
+proc; opt
+flatten; opt
+opt_dff; opt
+memory; opt
+fsm; opt
+techmap; opt
+dfflegalize -cell $_DFF_P_ 0 -cell $_DFFE_PP_ 0
+techmap -map turing_complete_ff_map.v
+abc -liberty turing_complete_nand_focus_tech.lib
+clean -purge
+write_verilog synth_output.v
