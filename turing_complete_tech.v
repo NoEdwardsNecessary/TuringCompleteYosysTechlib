@@ -55,16 +55,15 @@ output Y = A^B^CI;
 endmodule
 
 module DFF(C, D, Q);
-input C, D;
+input C, E, D;
 output reg Q;
 always @(posedge C)
 	Q <= D;
 endmodule
 
-module DFFE(C, EN, D, Q);
-input C, EN, D;
+module DFFE(C, E, D, Q);
+input C, E, D;
 output reg Q;
 always @(posedge C)
-	Q <= EN? D : Q;
+	Q <= E? D : Q;
 endmodule
-
